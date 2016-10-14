@@ -4,7 +4,7 @@ var Hello = React.createClass({
   render: function() {
     return (
       <div>
-        Hello, world123456!
+        Hello, world!123
       </div>
     );
   }

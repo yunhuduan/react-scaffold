@@ -4,12 +4,13 @@ var webpack = require('webpack');
 module.exports = {
     devtool: 'eval',
     entry: [
+            "webpack/hot/dev-server",
             "webpack-dev-server/client?http://localhost:8080/",
-            'webpack/hot/dev-server',
             './src/app.js'
         ],
     output: {
         path: path.join(__dirname, 'dist'),
+        publicPath:'/dist/',
         filename: 'bundle.js'
     },
     devServer:{
@@ -19,11 +20,7 @@ module.exports = {
         progress:true
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env.NODE.ENV':"development"
-        }),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        
     ],
     module: {
         loaders: [
