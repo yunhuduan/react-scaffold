@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base dist"
+    "dev": "webpack-dev-server --devtool eval --progress --colors --profile --hot --port 8080",
+    "build":"webpack --progress --colors --profile"
   },
   "author": "duanyunhu",
   "license": "ISC",
@@ -21,7 +22,7 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-1": "^6.16.0",
-    "react-hot-loader": "^3.0.0-beta.5",
+    "react-transform-hmr": "^1.0.4",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2"
   },

@@ -3,22 +3,19 @@ var webpack = require('webpack');
 
 module.exports = {
     devtool: 'eval',
-    entry: {
-        app:[
-        'react-hot-loader/patch',
-        'webpack-dev-server/client?http://localhost:3000',
-        'webpack/hot/only-dev-server',
-        './src/app.js'
-        ]
-    },
+    entry:  './src/app.js',
     output: {
         path: path.join(__dirname, 'dist'),
-        publicPath:'/dist/',
         filename: 'bundle.js'
     },
+    devServer:{
+        historyApiFallback:true,
+        hot:true,
+        inline:true,
+        progress:true
+    },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+       
     ],
     module: {
         loaders: [
@@ -34,6 +31,6 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js']
     }
 };
