@@ -1,10 +1,11 @@
 import React from "react";
-
+import World from "./World";
 var Hello = React.createClass({
   render: function() {
     return (
       <div>
-        Hello, world!123
+        Hello, webpack123!
+        <World/>
       </div>
     );
   }

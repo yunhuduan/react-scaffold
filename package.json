@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --hot --inline --config webpack.config.dev.js",
-    "build": "webpack --progress --colors --profile"
+    "build": "webpack --progress --colors --profile --config webpack.config.prod.js"
   },
   "author": "duanyunhu",
   "license": "ISC",
@@ -22,6 +22,7 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-1": "^6.16.0",
+    "html-webpack-plugin": "^2.22.0",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-transform-hmr": "^1.0.4",
     "webpack": "^1.13.2",

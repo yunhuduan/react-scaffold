@@ -1,26 +1,21 @@
 var path = require('path');
 var webpack = require('webpack');
-
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     devtool: 'eval',
     entry: [
-            "webpack/hot/dev-server",
-            "webpack-dev-server/client?http://localhost:8080/",
-            './src/app.js'
+        './src/app.js'
         ],
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath:'/dist/',
         filename: 'bundle.js'
     },
-    devServer:{
-        historyApiFallback:true,
-        hot:true,
-        inline:true,
-        progress:true
-    },
     plugins: [
-        
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'src/index.html'
+        })
     ],
     module: {
         loaders: [
