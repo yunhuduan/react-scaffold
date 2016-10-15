@@ -4,18 +4,18 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     devtool: 'cheap-module-source-map',
-    entry: [
-        './src/app.js'
-    ],
+    entry: {
+        app:'./src/app.js',
+    },
     output: {
         path: path.join(__dirname, 'dist'),
-       
-        filename: 'bundle.js'
+        filename: '[name]-[hash].js'
     },
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'src/index.html'
+
         }),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({
@@ -26,7 +26,7 @@ module.exports = {
                 except: ['$super', '$', 'exports', 'require']
             }
         }),
-        new webpack.optimize.CommonsChunkPlugin('common.js')
+        new webpack.optimize.CommonsChunkPlugin('common-[hash].js')
     ],
     module: {
         loaders: [

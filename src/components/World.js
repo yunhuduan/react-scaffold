@@ -4,7 +4,7 @@ var World = React.createClass({
   render: function() {
     return (
       <div>
-        Hello, world11!
+        Hello, world123!
       </div>
     );
   }

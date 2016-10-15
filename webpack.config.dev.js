@@ -5,11 +5,11 @@ module.exports = {
     devtool: 'eval',
     entry: [
         './src/app.js'
-        ],
+    ],
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath:'/dist/',
-        filename: 'bundle.js'
+        filename: '[name].js'
     },
     plugins: [
         new HtmlWebpackPlugin({
