@@ -4,7 +4,7 @@ var Hello = React.createClass({
   render: function() {
     return (
       <div>
-        Hello, webpack123!
+        Hello, webpack!
         <World/>
       </div>
     );
