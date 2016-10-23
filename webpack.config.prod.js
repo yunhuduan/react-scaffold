@@ -1,17 +1,24 @@
 var path = require('path');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
+var projectRootDir = path.resolve(__dirname);
 module.exports = {
     devtool: 'cheap-module-source-map',
     entry: {
-        app:'./src/app.js',
+        app:'./src/app.js'
     },
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(projectRootDir, 'dist'),
         filename: '[name]-[hash].js'
     },
     plugins: [
+        new CleanWebpackPlugin(['dist'], {
+            root: projectRootDir,
+            verbose: true,
+            dry: false,
+            exclude: []
+        }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'src/index.html'
