@@ -4,15 +4,14 @@ import GoodsRow from './goodsRow';
 
 
 export default  class GoodsList extends  React.Component{
-    constructor(props) {
+    /*constructor(props) {
         super(props)
+        此处需要bind this如果jsx中不使用es6的function
         this.handClick = this.handClick.bind(this)
         this.changeTitle = this.changeTitle.bind(this)
 
-    }
-    componentDidMount(){
+    }*/
 
-    }
     handClick(){
         console.log('GoodsList handClick');
         this.props.dispatch(getGoodsList())
@@ -46,8 +45,8 @@ export default  class GoodsList extends  React.Component{
 
                     </tbody>
                 </table>
-                <button onClick={this.handClick}>get goods</button>goods.length:{this.props.data.length}<br/>
-                <button onClick={this.changeTitle}>changeTitle</button>
+                <button onClick={(e)=>this.handClick(e)}>get goods</button>goods.length:{this.props.data.length}<br/>
+                <button onClick={(e)=>this.changeTitle(e)}>changeTitle</button>
             </div>
         );
     };
