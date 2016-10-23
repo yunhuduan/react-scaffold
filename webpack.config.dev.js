@@ -43,8 +43,11 @@ module.exports = {
             // app.get('/some/path', function(req, res) {
             //   res.json({ custom: 'response' });
             // });
-            app.get('/api/test',function (req,res) {
-                res.json({custom:'hello api'});
+            app.get('/api/goods',function (req,res) {
+                res.json([{id:1,name:'test1',price:12.5,remark:'testremark'},{id:2,name:'test2',price:10.5,remark:'testremark22'}]);
+            });
+            app.get('/api/users',function (req,res) {
+                res.json([{id:1,name:'test1'},{id:2,name:'test2'}]);
             });
         },
 
