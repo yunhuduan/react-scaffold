@@ -9,6 +9,7 @@ import {
 export const getGoodsList = () => {
     console.log('getGoodsList action');
     return (dispatch) => {
+
         fetch('http://localhost:8080/api/goods')
             .then(response => response.json())
             .then((json) => {

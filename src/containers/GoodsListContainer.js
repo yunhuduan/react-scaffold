@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import GoodsList from '../components/goods/GoodsList';
 
 
-function mapStateToProps(state){
+function mapStateToProps(store){
     console.log('goods container ....');
-    console.dir(state);
-    let goods = state.goods;
+    console.dir(store);
+    let goods = store.goods;
     return {...goods};
 };
 
