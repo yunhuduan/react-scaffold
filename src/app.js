@@ -10,6 +10,8 @@ import reducer from './reducers';
 import Main from './components/com/Main';
 import GoodsList from './containers/GoodsListContainer';
 
+require('./style/main.scss')
+
 const middleware = [ thunk ];
 middleware.push(createLogger());
 

@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var projectRootDir = path.resolve(__dirname);
 module.exports = {
     devtool: 'cheap-module-source-map',
@@ -33,7 +34,8 @@ module.exports = {
                 except: ['$super', '$', 'exports', 'require']
             }
         }),
-        new webpack.optimize.CommonsChunkPlugin('common-[hash].js')
+        new webpack.optimize.CommonsChunkPlugin('common-[hash].js'),
+        new ExtractTextPlugin('[name]-[hash].css')
     ],
     module: {
         loaders: [
@@ -44,7 +46,8 @@ module.exports = {
             {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'},
             {test: /\.(jpe?g|png|gif)$/i, loader: 'file?name=[name].[ext]'},
             {test: /\.ico$/, loader: 'file?name=[name].[ext]'},
-            {test: /(\.css|\.scss)$/, loaders: ['style', 'css?sourceMap', 'postcss', 'sass?sourceMap']}
+            {test: /(\.css|\.scss|\.sass)$/, loaders: ['style', 'css?sourceMap', 'sass?sourceMap']}
+            //{test: /(\.css|\.scss|\.sass)$/, loaders: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap')}
 
         ]
     },

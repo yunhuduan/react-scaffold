@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
     devtool: 'eval',
     entry: [
@@ -57,6 +58,7 @@ module.exports = {
             filename: 'index.html',
             template: 'src/index.html'
         }),
+        new ExtractTextPlugin('[name]-[hash].css'),
         new webpack.HotModuleReplacementPlugin()
     ],
     module: {
@@ -68,8 +70,8 @@ module.exports = {
             {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'},
             {test: /\.(jpe?g|png|gif)$/i, loader: 'file?name=[name].[ext]'},
             {test: /\.ico$/, loader: 'file?name=[name].[ext]'},
-            {test: /(\.css|\.scss)$/, loaders: ['style', 'css?sourceMap', 'postcss', 'sass?sourceMap']}
-
+            {test: /(\.css|\.scss|\.sass)$/, loaders: ['style', 'css?sourceMap', 'sass?sourceMap']}
+            //{test: /(\.css|\.scss|\.sass)$/, loaders: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap')}
         ]
     },
     resolve: {
