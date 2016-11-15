@@ -14,9 +14,10 @@ export default  class GoodsList extends  React.Component{
 
     handClick(){
         console.log('GoodsList handClick');
-        this.props.dispatch(getGoodsList())
+        this.props.getGoodsList({test:'this params is not required'})
     }
     changeTitle(event){
+        //this method is not use as well,you should use dispatch in container,this is a demo
         console.log('change title');
         this.props.dispatch(changeTitle(new Date().getTime()))
     }
