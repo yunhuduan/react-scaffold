@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var projectRootDir = path.resolve(__dirname);
 module.exports = {
     devtool: 'eval',
     entry: [
@@ -9,9 +10,9 @@ module.exports = {
         './src/app.js'
     ],
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(projectRootDir, 'dist'),
         publicPath:'/dist/',
-        filename: 'bundle.js'
+        filename: '[name]-[hash].js'
     },
     devServer:{
         inline:true,
@@ -37,6 +38,14 @@ module.exports = {
         contentBase:'',
         headers: { "X-Custom-Header": "yes" },//set headers
         stats: { colors: true },
+       /* proxy: {
+            '/api/!*': {
+                target: 'http://localhost:3000',
+                changeOrigin: true,
+                logLevel:'debug',
+                pathRewrite: {'^/api' : ''}
+            }
+        }*/
         setup: function(app) {
             // Here you can access the Express app object and add your own custom middleware to it.
             // For example, to define custom handlers for some paths:
@@ -53,11 +62,20 @@ module.exports = {
 
     },
     plugins: [
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify('development'),
+                BABEL_ENV: JSON.stringify('development')
+            }
+        }),
+        new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'src/index.html'
-        }),
-        new webpack.HotModuleReplacementPlugin()
+            template: 'src/index.html',
+            inject:true,
+            title:'test for react'
+        })
+
     ],
     module: {
         loaders: [

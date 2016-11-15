@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var projectRootDir = path.resolve(__dirname);
 module.exports = {
-    devtool: 'cheap-module-source-map',
+    devtool: 'source-map',
     entry: {
         app:'./src/app.js'
     },
@@ -13,18 +13,31 @@ module.exports = {
         filename: '[name]-[hash].js'
     },
     plugins: [
-        new CleanWebpackPlugin(['dist'], {
-            root: projectRootDir,
-            verbose: true,
-            dry: false,
-            exclude: []
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify('production'),
+                BABEL_ENV: JSON.stringify('production')
+            }
+        }),
+        new CleanWebpackPlugin([
+            'dist'
+        ], {
+            "root":projectRootDir,
+            // 一个根的绝对路径.
+            "verbose": true,
+            // 将log写到 console.
+            "dry": false,
+            // 不要删除任何东西，主要用于测试.
+            "exclude": []
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'src/index.html'
-
+            template: 'src/index.html',
+            inject:true,
+            title:'test for react'
         }),
         new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.CommonsChunkPlugin('common-[hash].js'),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
@@ -32,8 +45,8 @@ module.exports = {
             mangle: {
                 except: ['$super', '$', 'exports', 'require']
             }
-        }),
-        new webpack.optimize.CommonsChunkPlugin('common-[hash].js')
+        })
+
     ],
     module: {
         loaders: [

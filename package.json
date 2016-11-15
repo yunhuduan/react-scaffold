@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config webpack.config.dev.js",
-    "build": "webpack --progress --colors --profile --config webpack.config.prod.js"
+    "build": "cross-env NODE_ENV=production BABEL_ENV=production webpack --progress --colors --profile --config webpack.config.prod.js"
   },
   "author": "duanyunhu",
   "license": "ISC",
@@ -22,6 +22,8 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-1": "^6.16.0",
     "clean-webpack-plugin": "^0.1.13",
+    "cross-env": "^3.1.3",
+    "redux-logger": "^2.7.0",
     "html-webpack-plugin": "^2.22.0",
     "react-transform-hmr": "^1.0.4",
     "webpack": "^1.13.2",
@@ -35,7 +37,6 @@
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.6",
     "redux": "^3.6.0",
-    "redux-logger": "^2.7.0",
     "redux-thunk": "^2.1.0",
     "whatwg-fetch": "^1.0.0"
   }
